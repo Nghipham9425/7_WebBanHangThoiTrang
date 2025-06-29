@@ -1,0 +1,244 @@
+﻿@model Do_anNhom7.Models.ViewModel.CheckoutVM
+@{
+    ViewBag.Title = "Đặt hàng";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f8fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .table-bordered {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .img-thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-horizontal {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: all 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-link {
+        color: #007bff;
+        text-decoration: underline;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .btn-link:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+    h3 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+</style>
+
+<h2 class="text-center">ĐẶT HÀNG</h2>
+
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "checkoutForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3>Thông tin đơn hàng</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="2">Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td style="width: 80px;">
+                            <img src="~/Content/img-sp/@item.ProductImage" alt="@item.ProductName" class="img-thumbnail" />
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td class="text-center">@item.Quantity</td>
+                        <td class="text-right">@item.UnitPrice.ToString("N0")</td>
+                        <td class="text-right">@item.TotalPrice.ToString("N0")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Thông tin giao hàng</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShippingAddress, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control", @readonly = "readonly", @id = "ShippingAddress" })
+            @Html.ValidationMessageFor(m => m.ShippingAddress)
+            <button type="button" class="btn btn-link" onclick="enableAddressEdit()">Chỉnh sửa</button>
+        </div>
+    </div>
+
+    <div class="form-group" id="newAddressGroup" style="display:none;">
+        <label for="newShippingAddress" class="control-label col-md-2">Địa chỉ mới</label>
+        <div class="col-md-10">
+            <input type="text" id="newShippingAddress" class="form-control" oninput="updateShippingAddress()" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Phương thức giao hàng", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div>
+                @Html.RadioButtonFor(m => m.DeliveryMethod, "ViettelPost") ViettelPost
+            </div>
+            @Html.ValidationMessageFor(m => m.DeliveryMethod)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Phương thức thanh toán", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div>
+                @Html.RadioButtonFor(m => m.PaymentMethod, "Tiền mặt") Tiền mặt
+            </div>
+            <div>
+                @Html.RadioButtonFor(m => m.PaymentMethod, "Paypal") Paypal
+            </div>
+            @Html.ValidationMessageFor(m => m.PaymentMethod)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotalAmount, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TotalAmount, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.TotalAmount)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div id="alert-container"></div> <!-- Thêm thẻ div để hiển thị thông báo cảnh báo -->
+            <input type="submit" value="Đặt hàng" class="btn btn-primary" onclick="return validateForm()" />
+        </div>
+    </div>
+}
+
+<script>
+    function enableAddressEdit() {
+        document.getElementById("ShippingAddress").removeAttribute("readonly");
+        document.getElementById("newAddressGroup").style.display = "block";
+    }
+
+    function updateShippingAddress() {
+        var newAddress = document.getElementById("newShippingAddress").value;
+        if (newAddress) {
+            document.getElementById("ShippingAddress").value = newAddress;
+        }
+    }
+
+    function validateForm() {
+        var alertContainer = document.getElementById("alert-container");
+        alertContainer.innerHTML = ""; // Xóa các thông báo cảnh báo trước đó
+
+        var deliveryMethod = document.querySelector('input[name="DeliveryMethod"]:checked');
+        if (!deliveryMethod) {
+            var alert = document.createElement("div");
+            alert.className = "alert alert-danger";
+            alert.innerText = "Vui lòng chọn phương thức giao hàng.";
+            alertContainer.appendChild(alert);
+            return false;
+        }
+
+        var paymentMethod = document.querySelector('input[name="PaymentMethod"]:checked');
+        if (!paymentMethod) {
+            var alert = document.createElement("div");
+            alert.className = "alert alert-danger";
+            alert.innerText = "Vui lòng chọn phương thức thanh toán.";
+            alertContainer.appendChild(alert);
+            return false;
+        }
+
+        // Cập nhật địa chỉ mới trước khi submit form
+        updateShippingAddress();
+
+        if (paymentMethod.value === "Paypal") {
+            // Chuyển hướng PayPal
+            document.getElementById("checkoutForm").action = '@Url.Action("PaymentWithPaypal", "Order")';
+        }
+
+        return true; // Submit form
+    }
+</script>

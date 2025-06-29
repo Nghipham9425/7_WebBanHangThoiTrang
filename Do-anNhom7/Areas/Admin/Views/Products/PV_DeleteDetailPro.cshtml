@@ -1,0 +1,37 @@
+﻿@model Do_anNhom7.Models.Product
+<dl class="dl-horizontal">
+    <dt>
+        Tên sản phẩm
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProductName)
+    </dd>
+
+    <dt>
+        Mô tả sản phẩm
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProductDescription)
+    </dd>
+
+    <dt>
+        Giá sản phẩm
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProductPrice)
+    </dd>
+
+    <dt>
+        Hình ảnh sản phẩm
+    </dt>
+    <dd>
+        <img src="~/Content/img-sp/@Model.ProductImage" alt="@Model.ProductName" style="max-width: 200px; height: auto;" />
+    </dd>
+
+    <dt>
+        Danh mục sản phẩm
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Category.CategoryName)
+    </dd>
+</dl>

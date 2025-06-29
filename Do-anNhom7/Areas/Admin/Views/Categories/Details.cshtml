@@ -1,0 +1,19 @@
+﻿@model Do_anNhom7.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+<style>
+    a {
+        text-decoration: none; /* Loại bỏ gạch chân */
+        color: cornflowerblue;
+    }
+</style>
+<h2 class="title-top">CHI TIẾT DANH MỤC</h2>
+@Html.Partial("PV_DeleteDetailsCategory")
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { CategoryID = Model.CategoryID }, new { @class = "btn btn-primary btn-sm" }) |
+    @Html.ActionLink("Trở lại danh sách", "Index", "", new { @class = "btn btn-secondary btn-sm" })
+</p>

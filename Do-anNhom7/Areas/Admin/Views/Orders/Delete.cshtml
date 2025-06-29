@@ -1,0 +1,115 @@
+﻿@model Do_anNhom7.Models.Order
+
+@{
+    ViewBag.Title = "Xóa đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif; /* Font hiện đại hơn */
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); /* Gradient background */
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .title-top {
+        text-align: center;
+    }
+
+    .order-details {
+        max-width: 600px; /* Giới hạn chiều rộng */
+        margin: 20px auto; /* Căn giữa */
+        padding: 20px; /* Khoảng cách bên trong */
+        border: 1px solid #ddd; /* Viền */
+        border-radius: 8px; /* Bo góc */
+        background-color: #edf6f9; /* Màu nền */
+    }
+
+    .detail-row {
+        margin-bottom: 15px; /* Khoảng cách giữa các dòng */
+    }
+
+    .btn {
+        padding: 10px 15px; /* Khoảng cách cho nút */
+        border-radius: 5px; /* Bo góc cho nút */
+        color: white;
+        border: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+        .btn-danger:hover {
+            background-color: #a71d2a;
+        }
+
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .form-actions .btn {
+            margin: 0 10px;
+        }
+</style>
+
+<h2 class="title-top">Xóa đơn hàng</h2>
+
+<h3 class="title-top">Bạn có chắc chắn muốn xóa đơn hàng này không?</h3>
+<div class="order-details">
+    <h4>Chi tiết đơn hàng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã đơn hàng</dt>
+        <dd>@Html.DisplayFor(model => model.OrderID)</dd>
+
+        <dt>Ngày đặt</dt>
+        <dd>@Html.DisplayFor(model => model.OrderDate)</dd>
+
+        <dt>Tổng cộng</dt>
+        <dd>@Html.DisplayFor(model => model.TotalAmount)</dd>
+
+        <dt>Trạng thái thanh toán</dt>
+        <dd>@Html.DisplayFor(model => model.PaymentStatus)</dd>
+
+        <dt>Địa chỉ giao hàng</dt>
+        <dd>@Html.DisplayFor(model => model.ShippingAddress)</dd>
+
+        <dt>Phương thức giao hàng</dt>
+        <dd>@Html.DisplayFor(model => model.DeliveryMethod)</dd>
+
+        <dt>Phương thức thanh toán</dt>
+        <dd>@Html.DisplayFor(model => model.PaymentMethod)</dd>
+
+        <dt>Tên khách hàng</dt>
+        <dd>@Html.DisplayFor(model => model.Customer.CustomerName)</dd>
+
+        <dt>Username</dt>
+        <dd>@Html.DisplayFor(model => model.Customer.Username)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

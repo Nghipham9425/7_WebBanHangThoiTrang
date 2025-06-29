@@ -1,0 +1,118 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif; /* Font hiện đại hơn */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); /* Gradient background */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title-top {
+    text-align: center;
+}
+
+.product-details {
+    max-width: 600px; /* Giới hạn chiều rộng */
+    margin: 20px auto; /* Căn giữa */
+    padding: 20px; /* Khoảng cách bên trong */
+    border: 1px solid #ddd; /* Viền */
+    border-radius: 8px; /* Bo góc */
+    background-color: #edf6f9; /* Màu nền */
+}
+
+.detail-row {
+    margin-bottom: 15px; /* Khoảng cách giữa các dòng */
+}
+
+.product-image {
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của khung */
+    height: 300px; /* Tự động điều chỉnh chiều cao */
+    border-radius: 10px; /* Bo góc cho ảnh */
+}
+
+.btn {
+    padding: 10px 15px; /* Khoảng cách cho nút */
+    border-radius: 5px; /* Bo góc cho nút */
+}
+
+.form-horizontal {
+    max-width: 600px; /* Giới hạn chiều rộng của form */
+    margin: 20px auto; /* Căn giữa */
+    padding: 20px; /* Khoảng cách bên trong */
+    border: 1px solid #ddd; /* Viền */
+    border-radius: 8px; /* Bo góc */
+    background-color: #edf6f9;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center; /*căn theo trục ngang*/
+    padding-top: 20px;
+}
+
+    .pagination li {
+        margin: 0 5px; /* Tạo khoảng cách giữa các nút phân trang */
+    }
+
+        .pagination li a, .pagination li span {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+            .pagination li a:hover {
+                background-color: #f0f0f0;
+                color: #007bff;
+            }
+
+table {
+    border-collapse: collapse; /* Loại bỏ khoảng cách giữa các viền */
+    width: 100%;
+    margin: 20px 0;
+}
+
+    table th, table td {
+        border: 1px solid #ddd; /* Đường viền cho các ô */
+        padding: 8px; /* Khoảng cách nội dung bên trong ô */
+        text-align: center; /* Căn giữa theo chiều ngang */
+        vertical-align: middle; /* Căn giữa theo chiều dọc */
+    }
+
+    table th {
+        background-color: #343a40; /* Màu nền tiêu đề */
+        color: #fff;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f2f2f2; /* Màu nền hàng chẵn */
+    }
+
+    table tr:hover {
+        background-color: #ddd; /* Hiệu ứng hover */
+    }
+
+/* Custom CSS for form elements */
+.form-horizontal .form-group {
+    margin-bottom: 15px;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.form-horizontal .form-control {
+    width: 100%;
+}
+
+.btn-default {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+    .btn-default:hover {
+        background-color: #0056b3;
+    }

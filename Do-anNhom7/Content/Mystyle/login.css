@@ -1,0 +1,67 @@
+﻿body {
+    background: url(/Content/img/bgoffical.jpg);
+    background-size: cover;
+    background-position-y: -160px;
+    font-size: 16px;
+}
+
+#wrapper {
+    min-height: 100vh;
+    display: flex;
+justify-content: center; /*/căn theo chiều ngang//*/
+    align-items: center; /*căn dọc*/
+}
+
+#form-login {
+    max-width: 400px;
+    font-weight:bold;
+    flex-grow: 1;
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 17px 2px white;
+    border-radius: 15px;
+}
+
+.form-heading {
+    color:black;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    border-bottom: 1px solid #ffff;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.form-input {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: black;
+    flex-grow: 1;
+}
+
+    .form-input::placeholder {
+        color: black;
+        
+    }
+
+.form-submit {
+    background: transparent;
+    border: 1px solid whitesmoke;
+    color: black;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    transition: 0.25s ease-in-out;
+    margin-top: 20px;
+}
+
+    .form-submit:hover {
+        border: 1px solid #5e548e;
+    }
+.register-link a{
+    color:black;
+}

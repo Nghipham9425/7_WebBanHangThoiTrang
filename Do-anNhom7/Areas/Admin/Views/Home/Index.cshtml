@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+    /* Nền trắng tổng thể */
+    body {
+        font-family: 'Segoe UI', sans-serif; /* Font hiện đại hơn */
+        background-color: #ffffff; /* Nền trắng */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Khối thông tin (#tv-nhom) */
+    #tv-main {
+        background: #eaf4fc; /* Nền xanh pastel dịu */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bóng nhẹ */
+        border-radius: 10px;
+        margin: 50px auto;
+        max-width: 700px;
+        padding: 30px;
+        border: 1px solid #d1e7ff; /* Viền xanh nhạt */
+    }
+
+        #tv-main h1 {
+            font-size: 32px;
+            color: #0d6efd; /* Xanh dương đậm */
+            margin-bottom: 20px;
+        }
+
+        #tv-main h3 {
+            font-size: 24px;
+            color: #495057; /* Xám đậm */
+            margin-bottom: 15px;
+        }
+
+    #name-TV {
+        font-size: 18px;
+        color: #212529; /* Xám tối */
+        line-height: 1.8;
+        text-align: left;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+        #name-TV i {
+            color: #6c757d;
+            margin-right: 10px;
+        }
+
+        #name-TV span {
+            font-weight: bold;
+            color: #0d6efd; /* Xanh dương đậm */
+        }
+
+    /* Hiệu ứng hover */
+    #tv-nhom:hover {
+        transform: translateY(-5px); /* Nhấc lên nhẹ */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Bóng đậm hơn khi hover */
+        transition: 0.3s ease-in-out;
+    }
+
+    /* Biểu tượng */
+    i {
+        margin-right: 10px;
+    }
+</style>
+
+<div id="tv-main">
+    <h1><i class="fa-solid fa-user-tie"></i> Trang admin</h1>
+    <h3><i class="fa-solid fa-users-line"></i> Du an Web ban hang:</h3>
+    <h4>Dự án web bán quần áo với ASP.NET  và thư viện bootstrap gồm giao diện trang chính và trang admin với giao diện hiện đại.
+    Người dùng có thể đăng ký tài khoản và đặt hàng sau khi đặt hàng thông tin thanh toán và giao nhận sẽ được gửi tới admin xử lý. </h4>
+   
+</div>
+

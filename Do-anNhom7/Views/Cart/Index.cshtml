@@ -1,0 +1,179 @@
+﻿@model Do_anNhom7.Models.ViewModel.Cart
+
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .shoppingcart {
+        background-color: #f7f8fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px auto;
+    }
+
+    .cart-section {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .cart-button {
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+        text-decoration: none
+    }
+        .btn-danger:hover {
+            background-color: #c82333;
+            color:black;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color:white;    
+        }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .table th {
+        color: #888;
+    }
+
+    .product-image {
+        max-height: 80px;
+        border-radius: 6px;
+    }
+
+    .total-value {
+        font-weight: bold;
+        color: red;
+        font-size: 20px;
+    }
+
+    .empty-cart-message {
+        font-size: 18px;
+        color: #555;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .quantity-control button {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        font-size: 16px;
+        line-height: 28px;
+        color: #666;
+        transition: background-color 0.3s;
+    }
+
+        .quantity-control button:hover {
+            background-color: #e0e0e0;
+        }
+
+    .quantity-control input[type="number"] {
+        width: 50px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+        background-color: #f7f8fa;
+    }
+</style>
+
+<script>
+    function cartUpdateQuantity(id, newQuantity) {
+        if (newQuantity < 1) return; //nếu <1 thì return
+        const form = document.createElement('form'); //tạo 1 form html ẩn
+        form.method = 'post';  //gửi yêu cầu post để cập nhật sp
+        form.action = '@Url.Action("UpdateQuantity", "Cart")'; 
+
+        //5. Tạo input ẩn để lưu giá trị id của sản phẩm
+        const idInput = document.createElement('input'); 
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = id;
+        form.appendChild(idInput);
+        //6. Tạo input ẩn để lưu giá trị quantity (số lượng sản phẩm)
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'hidden';
+        quantityInput.name = 'quantity';
+        quantityInput.value = newQuantity;
+        form.appendChild(quantityInput);
+
+        //Gắn form vào DOM
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<h2 style="text-align:center">GIỎ HÀNG</h2>
+<div class="shoppingcart">
+    @if (!Model.Items.Any())
+    {
+        <p class="empty-cart-message">Bạn chưa có sản phẩm nào trong giỏ.</p>
+    }
+    else
+    {
+        <div class="col-md-8 cart-section">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                        <th title="Xóa tất cả mặt hàng trong giỏ">
+                            <a href="@Url.Action("ClearCart", "Cart", null)"><i class="fas fa-trash-alt"></i></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td><img src="~/Content/img-sp/@item.ProductImage" alt="@item.ProductName" class="product-image" /></td>
+                            <td class="col-md-3">@item.ProductName</td>
+                            <td class="quantity-control">
+                                <button type="button" onclick="cartUpdateQuantity(@item.ProductID, @item.Quantity - 1)">-</button>
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" max="100" readonly />
+                                <button type="button" onclick="cartUpdateQuantity(@item.ProductID, @item.Quantity + 1)">+</button>
+                            </td>
+                            <td>@item.UnitPrice.ToString("N0")</td> 
+                            <td>@item.TotalPrice.ToString("N0")</td>
+                            <td>
+                                <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.ProductID })">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        //N0 thêm dấu thập phân cách hàng nghìn
+        <div class="col-md-3 cart-section">
+            <div><strong>Tổng giá trị: <span class="total-value">@Model.TotalValue().ToString("N0")</span></strong></div>
+            @Html.ActionLink("Mua hàng", "Checkout", "Order", null, new { @class = "btn btn-danger cart-button" })
+        </div>
+    }
+</div>
+<div class="col-md-12 text-center">
+    @Html.ActionLink("Tiếp tục mua hàng", "Homepage", "Home", null, new { @class = "btn btn-warning cart-button" })
+</div>

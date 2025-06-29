@@ -1,0 +1,56 @@
+﻿@model Do_anNhom7.Models.ViewModel.LoginVM
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Mystyle/login.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Login</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2 class="form-heading">Đăng nhập</h2>
+
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-input", placeholder = "Tên đăng nhập", required = "true" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-input", placeholder = "Mật khẩu", required = "true" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Checkbox "Nhớ tôi" -->
+            <div class="form-group remember-forgot">
+                <label>
+                    <input type="checkbox"> Nhớ
+                </label>
+            </div>
+
+            <!-- Nút đăng nhập -->
+            <input type="submit" value="Đăng nhập" class="form-submit">
+
+            <!-- Liên kết đến trang đăng ký -->
+            <div class="register-link">
+                <p>Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng ký ngay</a></p>
+            </div>
+        }
+    </div>
+</body>
+</html>

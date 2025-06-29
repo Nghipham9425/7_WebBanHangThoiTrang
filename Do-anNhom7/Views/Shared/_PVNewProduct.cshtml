@@ -1,0 +1,42 @@
+﻿@model Do_anNhom7.Models.ViewModel.HomeProductVM
+@using PagedList.Mvc
+<link href="~/Content/Mystyle/dinhdangsp.css" rel="stylesheet" />
+<link href="~/Content/Mystyle/layout.css" rel="stylesheet" />
+<!--Hien thi ds sp-->
+@if (Model.NewProducts != null && Model.NewProducts.Any())
+{
+    <section class="container-fluid listProduct">
+        <h2>Sản phẩm mới</h2>
+        <ul class="list-container">
+            @foreach (var product in Model.NewProducts)
+            {
+                <li class="lproduct-item">
+                    <div>
+                        <a href="@Url.Action("ProductDetails","Home",new { id=product.ProductID})">
+                            <img src="~/Content/img-sp/@product.ProductImage" alt="@product.ProductName" class="product-image" />
+                        </a>
+                    </div>
+                    <div>
+                        <p class="prodPrice"><strong>@string.Format("{0:N0}", product.ProductPrice)</strong> VNĐ</p> <!-- Hiển thị giá mà không có số 0 và có dấu phẩy -->
+                        <p class="prodName">@Html.DisplayFor(modelItem => product.ProductName)</p>
+                        <p class="prodSale">
+                            Đã bán:&nbsp;@Html.DisplayFor(modelItem => product.OrderDetails.Count)
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </section>
+    <!--Hiển thị phân trang-->
+    <div class="pagination-container">
+        @Html.PagedListPager(Model.NewProducts, page => Url.Action("Homepage", new
+        {
+            page,
+            searchTerm = Model.SearchTerm
+        }))
+    </div>
+}
+else
+{
+    <p>Không tìm được sản phẩm nào phù hợp.</p>
+}

@@ -1,0 +1,37 @@
+﻿@model Do_anNhom7.Models.ViewModel.HomeProductVM
+<link href="~/Content/Mystyle/layout.css" rel="stylesheet" />
+<link href="~/Content/Mystyle/dinhdangsp.css" rel="stylesheet" />
+<!--Hien thi ds sp-->
+@if(Model.FeaturedProducts !=null && Model.FeaturedProducts.Any())
+    {
+    <section class="container-fluid featureProd">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="feature-container">
+            @foreach (var product in Model.FeaturedProducts)
+            {
+                <div class="fproduct-item">
+                    <div>
+                        <a href="@Url.Action("ProductDetails","Home",new { id=product.ProductID})">
+                            <img src="~/Content/img-sp/@product.ProductImage" alt="@product.ProductName" class="product-image" />
+                                </a>
+                    </div>
+                    <div>
+                        <p class="prodPrice">
+                        <strong>@string.Format("{0:N0}", product.ProductPrice)</strong> VNĐ</p> <!-- Hiển thị giá mà không có số 0 và có dấu phẩy -->
+                        <p class="prodName">
+                            @Html.DisplayFor(modelItem => product.ProductName)
+                        </p>
+                        <p class="prodCate">
+                            @Html.DisplayFor(modelItem => product.Category.CategoryName)
+                        </p>
+                        <p class="prodSale">
+                            Đã bán:&nbsp; @Html.DisplayFor(modelItem => product.OrderDetails.Count)
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <hr />
+}
+

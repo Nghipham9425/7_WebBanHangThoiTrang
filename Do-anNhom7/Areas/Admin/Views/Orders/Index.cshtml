@@ -1,0 +1,76 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Do_anNhom7.Models.Order>
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+<style>
+    a {
+        text-decoration: none;
+        color: cornflowerblue;
+    }
+
+    .pagination-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .pagination-container a {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 0 3px;
+            border: 1px solid #ddd;
+            color: #007bff;
+        }
+
+            .pagination-container a:hover {
+                background-color: #f8f9fa;
+                border-color: #ccc;
+            }
+</style>
+<h2 class="title-top">DANH SÁCH ĐƠN HÀNG</h2>
+
+<!-- Nút Tạo mới -->
+<div class="mb-3">
+    @Html.ActionLink("Tạo mới", "Create", "", new { @class = "btn btn-dark btn-sm" })
+</div>
+
+<table class="table text-bg-light col-lg-10">
+    <tr>
+        <th class="bg-dark text-light opacity-75">Mã đơn hàng</th>
+        <th class="bg-dark text-light opacity-75">Ngày đặt</th>
+        <th class="bg-dark text-light opacity-75">Tổng cộng</th>
+        <th class="bg-dark text-light opacity-75">Trạng thái thanh toán</th>
+        <th class="bg-dark text-light opacity-75">Địa chỉ giao hàng</th>
+        <th class="bg-dark text-light opacity-75">Phương thức giao hàng</th>
+        <th class="bg-dark text-light opacity-75">Phương thức thanh toán</th>
+        <th class="bg-dark text-light opacity-75">Tên khách hàng</th>
+        <th class="bg-dark text-light opacity-75">Username</th>
+        <th class="bg-dark text-light opacity-75"></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.OrderID)</td>
+            <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+            <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
+            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+            <td>@Html.DisplayFor(modelItem => item.DeliveryMethod)</td>
+            <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+            <td>@Html.DisplayFor(modelItem => item.Customer.CustomerName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Customer.Username)</td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.OrderID }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.OrderID }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Xóa", "Delete", new { id = item.OrderID }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>
+<!-- Hiển thị phân trang -->
+<div class="pagination-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+

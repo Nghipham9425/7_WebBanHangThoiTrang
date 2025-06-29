@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Do_anNhom7.Models.Product>
+@{
+    ViewBag.Title = "Nữ";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<link href="~/Content/Mystyle/dinhdangsp.css" rel="stylesheet" />
+
+<h2 class="cate-heading">Nữ:</h2>
+<div class="product-grid">
+    @foreach (var item in Model)
+    {
+        <div class="product-card">
+            <a href="@Url.Action("ProductDetails", "Product", new { id = item.ProductID })">
+                <img src="~/Content/img-sp/@item.ProductImage" alt="@item.ProductName" class="product-image" />
+            </a>
+            <h3>@item.ProductName</h3>
+            <p>@item.ProductDescription</p>
+            <p><strong>@string.Format("{0:N0}", item.ProductPrice)</strong> VNĐ</p> <!-- Hiển thị giá mà không có số 0 và có dấu phẩy -->
+        </div>
+    }
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model Do_anNhom7.Models.User
+
+@{
+    ViewBag.Title = "Xóa Người Dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+
+<h2 class="text-center">Xóa Người Dùng</h2>
+
+<h3 class="text-center">Bạn có chắc muốn xóa người dùng này không?</h3>
+<div class="text-center">
+    <hr />
+    <h4>User</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

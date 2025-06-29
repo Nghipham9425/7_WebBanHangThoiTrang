@@ -1,0 +1,38 @@
+﻿@model Do_anNhom7.Models.User
+
+@{
+    ViewBag.Title = "Chi Tiết Người Dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+
+<h2 class="title-top">CHI TIẾT NGƯỜI DÙNG</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole)
+        </dd>
+
+        <!-- Không hiển thị mật khẩu vì lý do bảo mật -->
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark btn-sm" })
+</p>

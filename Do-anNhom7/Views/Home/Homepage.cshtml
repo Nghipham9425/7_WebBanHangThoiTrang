@@ -1,0 +1,52 @@
+﻿@model Do_anNhom7.Models.ViewModel.HomeProductVM
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<link href="~/Content/Mystyle/customerHome.css" rel="stylesheet" />
+<link href="~/Content/Mystyle/banner.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="banner">
+    <div class="slide active"><img src="/Content/img/banner1.png" /></div>
+    <div class="slide"><img src="/Content/img/banner2.png" /></div>
+    <div class="slide"><img src="/Content/img/banner3.png" /></div>
+</div>
+<br />
+<div class="service-container">
+    <div class="service">
+        <img class="img-src" src="~/Content/img/service1.png" />
+        <p>
+            <b>
+                Thanh toán khi nhận hàng (COD)
+            </b>
+        </p>
+        <p>
+            Giao hàng toàn quốc.
+        </p>
+    </div>
+    <div class="service">
+        <img class="img-src" src="~/Content/img/service2.png" />
+        <p>
+            <b>Miễn phí giao hàng</b>
+        </p>
+        <p>
+            Với đơn hàng trên 599.000đ.
+        </p>
+    </div>
+    <div class="service">
+        <img class="img-src" src="~/Content/img/service3.png" />
+        <p>
+            <b>Đổi hàng miễn phí</b>
+        </p>
+        <p>
+            Trong 30 ngày kể từ ngày mua.
+        </p>
+    </div>
+</div>
+<hr />
+@*Phần sp nổi bật*@
+@Html.Partial("_PVFeatureProduct", Model)
+@*Phần sp mới*@
+@Html.Partial("_PVNewProduct", Model)
+
+<script src="~/Scripts/MyJS/banner.js"></script>

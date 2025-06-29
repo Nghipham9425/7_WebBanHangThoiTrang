@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Address";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<style>
+    body{
+        font-family:sans-serif;
+    }
+    .store-address {
+        text-align: center;
+        background-color: #fff0f3;
+        margin: auto;
+        width: 50%;
+        border-radius:8px;
+    }
+    .map{
+        text-align:center;
+    }
+    #title {
+        color: darkred;
+    }
+</style>
+<div class="store-address">
+    <div id="title"><h2>Địa chỉ cửa hàng</h2></div>
+    <p>123 Đường Sư Vạn Hạnh, Quận 10, Thành phố Hồ Chí Minh</p>
+    <p>Điện thoại: 0123 456 789</p>
+    <p>Email: huflit@example.com</p>
+</div>
+<div class="map">
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125422.72943412294!2d106.52316924335938!3d10.776014700000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edb765b5c25%3A0x9a3519bdad5a85a3!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOZ2_huqFpIG5n4buvIC0gVGluIGjhu41jIFRQLiBI4buTIENow60gTWluaCAoSFVGTElUKQ!5e0!3m2!1sen!2s!4v1730208223026!5m2!1sen!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>

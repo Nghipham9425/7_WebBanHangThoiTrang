@@ -1,0 +1,154 @@
+﻿/* Đặt font chữ mặc định cho toàn bộ trang web */
+body {
+    font-family: 'Segoe UI', sans-serif; /* Font hiện đại hơn */
+    margin: 0; /* Xóa bỏ margin mặc định của trình duyệt */
+    padding: 0; /* Xóa bỏ padding mặc định của trình duyệt */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu của body bằng chiều cao màn hình */
+}
+
+/* Định dạng tiêu đề của danh mục sản phẩm */
+.cate-heading {
+    text-align: center; /* Canh giữa văn bản */
+    margin: 40px 0; /* Thêm khoảng cách phía trên và dưới */
+    font-size: 32px; /* Kích thước font */
+    font-weight: 700; /* Đậm */
+    color: #2c3e50; /* Màu chữ */
+    text-transform: uppercase; /* Chữ in hoa */
+    position: relative; /* Để có thể sử dụng pseudo-element */
+}
+
+    /* Tạo một đường kẻ dưới cho tiêu đề danh mục */
+    .cate-heading::after {
+        content: ''; /* Tạo nội dung rỗng */
+        display: block; /* Hiển thị như một block */
+        width: 60px; /* Chiều dài của đường kẻ */
+        height: 3px; /* Chiều cao của đường kẻ */
+        background: #0288d1; /* Màu đường kẻ */
+        margin: 15px auto; /* Canh giữa và thêm khoảng cách trên/dưới */
+        border-radius: 2px; /* Bo góc đường kẻ */
+    }
+
+/* Định dạng cho mỗi sản phẩm trong danh mục */
+.product-card {
+    border-radius: 12px; /* Bo góc của thẻ sản phẩm */
+    padding: 20px; /* Thêm khoảng cách bên trong */
+    text-align: center; /* Canh giữa nội dung */
+    background-color: #fff; /* Màu nền trắng */
+    margin: 15px; /* Khoảng cách giữa các thẻ sản phẩm */
+    cursor: pointer; /* Đổi con trỏ khi hover */
+    overflow: hidden; /* Ẩn các phần vượt ra ngoài thẻ */
+    position: relative; /* Để có thể sử dụng pseudo-element */
+}
+
+    /* Tạo hiệu ứng nền khi hover lên thẻ sản phẩm */
+    .product-card::before {
+        content: ''; /* Tạo nội dung rỗng */
+        position: absolute; /* Đặt vị trí tuyệt đối so với thẻ sản phẩm */
+        top: 0; /* Đặt ở trên cùng */
+        left: 0; /* Đặt ở bên trái */
+        width: 100%; /* Chiều rộng bằng thẻ sản phẩm */
+        height: 100%; /* Chiều cao bằng thẻ sản phẩm */
+        background: #e2eafc; /* Màu nền của hiệu ứng */
+        opacity: 0; /* Mặc định ẩn */
+        transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi khi thay đổi độ mờ */
+    }
+
+    /* Khi hover vào thẻ sản phẩm, nền sẽ hiển thị */
+    .product-card:hover::before {
+        opacity: 0.5; /* Đặt độ mờ thành 1 (hiển thị nền) */
+    }
+
+/* Định dạng ảnh sản phẩm */
+.product-image {
+    width: 100%; /* Chiều rộng đầy đủ */
+    height: 250px; /* Chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh sao cho đầy đủ và không bị biến dạng */
+    border-radius: 8px; /* Bo góc ảnh */
+    transition: all 0.5s ease; /* Thêm hiệu ứng chuyển đổi khi hover */
+}
+
+/* Khi hover lên thẻ sản phẩm, ảnh sẽ phóng to và sáng hơn */
+.product-card:hover .product-image {
+    transform: scale(1.08); /* Phóng to ảnh */
+    filter: brightness(1.05); /* Làm ảnh sáng hơn */
+}
+
+/* Định dạng lưới sản phẩm */
+.product-grid {
+    display: grid; /* Sử dụng CSS Grid để hiển thị sản phẩm */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Tạo các cột linh hoạt */
+    gap: 30px; /* Khoảng cách giữa các sản phẩm */
+    margin: 20px; /* Khoảng cách ngoài */
+    padding: 20px; /* Khoảng cách trong */
+}
+
+/* Định dạng tên sản phẩm */
+.product-name {
+    font-size: 18px; /* Kích thước font */
+    font-weight: 600; /* Đậm vừa */
+    margin: 20px 0 10px; /* Khoảng cách trên/dưới */
+    color: #2c3e50; /* Màu chữ */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu chữ */
+}
+
+/* Khi hover lên thẻ sản phẩm, tên sản phẩm sẽ đổi màu */
+.product-card:hover .product-name {
+    color: #0288d1; /* Màu chữ mới khi hover */
+}
+
+/* Định dạng mô tả sản phẩm */
+.product-description {
+    font-size: 14px; /* Kích thước font */
+    line-height: 1.6; /* Khoảng cách giữa các dòng */
+    color: #666; /* Màu chữ */
+    margin: 10px 0; /* Khoảng cách trên/dưới */
+    padding: 10px; /* Thêm padding */
+    background: rgba(244, 244, 244, 0.8); /* Màu nền mờ */
+    border-radius: 6px; /* Bo góc */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+/* Định dạng giá sản phẩm */
+.product-price {
+    font-size: 18px; /* Kích thước font */
+    font-weight: 700; /* Đậm */
+    color: #0288d1; /* Màu chữ */
+    margin: 15px 0; /* Khoảng cách trên/dưới */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+/* Khi hover lên thẻ sản phẩm, giá sẽ phóng to và đổi màu */
+.product-card:hover .product-price {
+    transform: scale(1.1); /* Phóng to giá */
+    color: #01579b; /* Đổi màu chữ */
+}
+
+/* Định dạng thể loại sản phẩm */
+.product-category {
+    font-size: 13px; /* Kích thước font */
+    color: #78909c; /* Màu chữ */
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 1px; /* Khoảng cách giữa các ký tự */
+    margin-top: 10px; /* Khoảng cách phía trên */
+}
+
+/* Media Query cho màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* Sử dụng 2 cột thay vì nhiều cột */
+        gap: 20px; /* Khoảng cách giữa các sản phẩm */
+        margin: 10px; /* Khoảng cách ngoài */
+        padding: 10px; /* Khoảng cách trong */
+    }
+}
+
+/* Media Query cho màn hình nhỏ hơn 480px */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Sử dụng 1 cột cho sản phẩm */
+    }
+
+    .cate-heading {
+        font-size: 24px; /* Giảm kích thước chữ cho tiêu đề danh mục */
+    }
+}

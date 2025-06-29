@@ -1,0 +1,71 @@
+﻿@model Do_anNhom7.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4 text-center">Chi tiết đơn hàng #@Model.OrderID</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="bg-light">Ngày đặt hàng:</th>
+                    <td>@(Model.OrderDate.HasValue ? Model.OrderDate.Value.ToString("HH:mm dd/MM/yyyy") : "Không xác định")</td>
+                </tr>
+                <tr>
+                    <th class="bg-light">Tổng tiền:</th>
+                    <td>@(Model.TotalAmount.HasValue ? string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", Model.TotalAmount.Value) : "Không xác định")</td>
+                </tr>
+                <tr>
+                    <th class="bg-light">Trạng thái thanh toán:</th>
+                    <td>@Model.PaymentStatus</td>
+                </tr>
+                <tr>
+                    <th class="bg-light">Phương thức thanh toán:</th>
+                    <td>@Model.PaymentMethod</td>
+                </tr>
+                <tr>
+                    <th class="bg-light">Địa chỉ giao hàng:</th>
+                    <td>@Model.ShippingAddress</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h3 class="mt-5 text-center">Chi tiết sản phẩm</h3>
+    <table class="table table-bordered table-hover text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img-sp/" + item.Product.ProductImage)"
+                             alt="@item.Product.ProductName"
+                             class="img-thumbnail"
+                             style="width: 80px; height: auto;" />
+                    </td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", item.UnitPrice)</td>
+                    <td>
+                        @(item.TotalPrice.HasValue ?
+                            string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", item.TotalPrice.Value)
+                            : "Không xác định")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

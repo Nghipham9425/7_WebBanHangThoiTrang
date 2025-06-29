@@ -1,0 +1,46 @@
+﻿@model Do_anNhom7.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+<h2 class="title-top">Thêm sản phẩm</h2>
+@*enctype :cho phép gửi tệp tin (hình ảnh) cùng với form.*@
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken() //token bảo vệ
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" }) @*//Hiển thị thông báo lỗi nếu có lỗi trong form, với các lỗi được hiển thị trong thẻ HTML có lớp CSS text-danger.*@
+    @Html.Partial("PV_CreateEditPro")
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+</div>
+
+<script>
+    function previewImage() {
+        var file = document.getElementById("ProductImage").files[0];
+        var reader = new FileReader();
+        //onloadend là sự kiện được gọi khi quá trình đọc tệp kết thúc. Điều này có nghĩa là khi ảnh đã được đọc xong, sẽ thực thi hàm
+        reader.onloadend = function () {
+            var image = document.getElementById("imagePreview");
+            image.src = reader.result;
+            image.style.display = "block"; // Hiển thị ảnh khi đã tải xong
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

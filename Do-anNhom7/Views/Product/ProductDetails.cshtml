@@ -1,0 +1,117 @@
+﻿@model Do_anNhom7.Models.ViewModel.ProductDetailsVM
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<head>
+    <style>
+        /* Áp dụng font sans-serif cho toàn bộ trang */
+        body {
+            font-family: sans-serif;
+        }
+
+        /* Phần định dạng cho trang sản phẩm */
+        .pro {
+            padding: 50px 10px 50px 10px;
+            background-color: ghostwhite; /* Màu nền của phần chứa thông tin sản phẩm */
+        }
+
+        /* Phần thông tin sản phẩm, gồm ảnh và mô tả */
+        .pro-section {
+            background-color: white;
+            border: 1px solid #ddd; /* Đường viền nhẹ */
+            border-radius: 10px; /* Bo góc các khối */
+            margin: 10px;
+        }
+
+            /* Hình ảnh sản phẩm */
+            .pro-section img {
+                max-height: 500px;
+                max-width: 100%;
+                border-radius: 10px;
+                object-fit: contain; /* Đảm bảo ảnh không bị méo và giữ tỷ lệ */
+                margin: 0 auto;
+                display: block;
+            }
+
+        /* Định dạng giá sản phẩm */
+        .pro-price {
+            text-align: center;
+            font-weight: bolder;
+            font-size: 1.5em;
+            color: red;
+            margin-top: 15px;
+        }
+
+        /* Định dạng số lượng đã bán */
+        .pro-sale {
+            text-align: center;
+            font-weight: lighter;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+        #estimatedPrice {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<!-- Phần chi tiết sản phẩm -->
+<div class="container-fluid pro">
+    <div class="row">
+        <!-- Phần trái: Hiển thị hình ảnh sản phẩm -->
+        <div class="col-md-3 pro-section">
+            <img src="~/Content/img-sp/@Model.product.ProductImage" alt="@Model.product.ProductName" class="product-image" />
+        </div>
+
+        <!-- Phần giữa: Hiển thị thông tin sản phẩm -->
+        <div class="col-md-5 pro-section">
+            <h4><strong>@Html.DisplayFor(model => model.product.ProductName)</strong></h4>
+            <p class="pro-sale">Đã bán: @Model.product.OrderDetails.Count</p>
+            <p class="pro-price">
+                @String.Format("{0:N0} VND", Model.product.ProductPrice)
+            </p>
+
+            <p>Danh mục: @Model.product.Category.CategoryName</p>
+            <hr />
+            <h5><strong>Mô tả sản phẩm</strong></h5>
+            <p>@Model.product.ProductDescription</p>
+            <hr />
+            <!-- Phần sản phẩm liên quan -->
+            <div>@Html.Partial("_PVRelatedProduct", Model)</div>
+        </div>
+
+        <!-- Phần phải: Form nhập số lượng và tính tạm tính -->
+        <div class="col-md-3 pro-section">
+            <div class="form-group">
+                @using (Html.BeginForm("ProductDetails", "Home", FormMethod.Get))
+                {
+                    <h4><strong>Chọn Size</strong></h4>
+                    <p>
+                        @Html.DropDownListFor(model => model.SelectedSize,
+                        new SelectList(Model.AvailableSizes), // Sử dụng trực tiếp AvailableSizes mà bạn đã cung cấp trong ViewModel
+                        "Chọn size",
+                        new { @class = "form-control", @id = "sizeDropdown" })
+                    </p>
+                    <h4><strong>Tạm tính</strong></h4>
+                    <p id="estimatedPrice">@Model.estimatedValue.ToString("#,0") VND</p>
+                    <!-- Thêm vào giỏ hàng -->
+                    <div style="text-align:center">
+                        @Html.ActionLink("Thêm vào giỏ hàng", "AddToCart", "Cart", new { id = Model.product.ProductID, quantity = Model.quantity }, new { @class = "btn btn-danger" })
+                    </div>
+                }
+            </div>
+            <hr />
+            <!-- Phần sản phẩm bán chạy -->
+            <div>@Html.Partial("_PVTopProduct", Model)</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

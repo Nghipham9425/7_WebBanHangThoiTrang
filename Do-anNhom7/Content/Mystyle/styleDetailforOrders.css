@@ -1,0 +1,135 @@
+﻿/* Căn chỉnh chung */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+h2.order-details-title {
+    font-size: 32px; /* Cỡ chữ tiêu đề lớn hơn */
+    color: #0056b3; /* Màu xanh đậm cho tiêu đề */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 28px; /* Cỡ chữ tiêu đề chi tiết sản phẩm lớn hơn */
+    color: #0056b3; /* Cùng tông màu với tiêu đề */
+    margin-bottom: 20px;
+}
+
+/* Phần thông tin đơn hàng */
+.order-details {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.order-info {
+    font-size: 18px; /* Cỡ chữ lớn hơn cho thông tin đơn hàng */
+    margin-bottom: 15px;
+}
+
+    .order-info strong {
+        color: #555; /* Màu chữ mạnh mẽ cho phần tiêu đề thông tin */
+    }
+
+.customer-name strong {
+    color: #ff6f61; /* Màu cam nhẹ cho tên khách hàng để nổi bật */
+}
+
+/* Bảng chi tiết sản phẩm */
+.table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ cho bảng */
+}
+
+    .table th, .table td {
+        padding: 20px 25px; /* Cải thiện padding để bảng thoáng hơn */
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        font-size: 18px; /* Cỡ chữ tiêu đề bảng lớn hơn */
+        background-color: #f8f9fa; /* Màu nền sáng cho tiêu đề bảng */
+        font-weight: bold;
+        color: #007bff; /* Màu xanh dương cho tiêu đề bảng */
+    }
+
+    .table td {
+        font-size: 18px; /* Cỡ chữ lớn hơn cho dữ liệu bảng */
+        color: #333;
+        vertical-align: middle; /* Căn giữa các dòng sản phẩm */
+    }
+
+    .table .img-thumbnail {
+        width: 80px; /* Đảm bảo hình ảnh không quá nhỏ */
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin: 0 auto; /* Căn giữa hình ảnh trong ô */
+    }
+
+    .table td img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Cải thiện độ rộng của các cột */
+    .table th:nth-child(1), .table td:nth-child(1) {
+        width: 120px;
+    }
+
+    .table th:nth-child(2), .table td:nth-child(2) {
+        width: 250px;
+    }
+
+    .table th:nth-child(3), .table td:nth-child(3) {
+        width: 120px;
+    }
+
+    .table th:nth-child(4), .table td:nth-child(4) {
+        width: 150px;
+    }
+
+    .table th:nth-child(5), .table td:nth-child(5) {
+        width: 150px;
+    }
+
+    /* Thêm màu sắc cho giá tiền */
+    .table td:nth-child(4), .table td:nth-child(5) {
+        font-weight: bold;
+        color: #28a745; /* Màu xanh lá cho đơn giá và thành tiền */
+    }
+
+/* Các nút */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 14px 30px; /* Cải thiện kích thước nút */
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 18px; /* Cỡ chữ nút lớn hơn */
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Căn giữa */
+.text-center {
+    text-align: center;
+}
+
+/* Khoảng cách cho các phần tử */
+.mt-5 {
+    margin-top: 40px;
+}

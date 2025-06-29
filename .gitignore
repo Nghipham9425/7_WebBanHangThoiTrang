@@ -1,0 +1,52 @@
+## Ignore Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+*.log
+
+## Others
+*.dbmdl
+*.pdb
+*.cache
+*.ilk
+*.iobj
+*.ipdb
+*.tlog
+*.vspscc
+*.vssscc
+
+## NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+*.psess
+
+## Web publish
+publish/
+
+## OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## git backups
+*.orig
+
+## Windows crash dumps
+*.stackdump
+
+## Local history
+.history/
+
+## Rider (nếu bạn mở bằng JetBrains IDE)
+.idea/
+*.sln.iml

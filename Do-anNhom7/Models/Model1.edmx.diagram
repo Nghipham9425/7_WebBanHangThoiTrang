@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aabf605c13e64c659334cd80bb4d860e" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.Customer" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.Order" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLStoreQuanAoModel.User" Width="1.5" PointX="1.5" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="QLStoreQuanAoModel.FK__Product__Categor__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLStoreQuanAoModel.FK__Customer__Userna__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="QLStoreQuanAoModel.FK__Order__CustomerI__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="QLStoreQuanAoModel.FK__OrderDeta__Order__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="QLStoreQuanAoModel.FK__OrderDeta__Produ__45F365D3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

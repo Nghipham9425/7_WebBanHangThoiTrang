@@ -1,0 +1,23 @@
+﻿@model Do_anNhom7.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+<style>
+    a {
+      
+    }
+</style>
+<h2 class="title-top">XÓA</h2>
+@Html.Partial("PV_DeleteDetailsCategory")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        @Html.ActionLink("Trở lại danh sách", "Index", "", new { @class = "btn btn-primary" })
+    </div>
+}

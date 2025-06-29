@@ -1,0 +1,83 @@
+﻿@model Do_anNhom7.Models.ViewModel.RegisterVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Mystyle/login.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Đăng ký</title>
+    <style>
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1 class="form-heading">Đăng ký tài khoản</h1>
+
+            @* Tên đăng nhập *@
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-input", placeholder = "Tên đăng nhập" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+
+            @* Mật khẩu *@
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-input", placeholder = "Mật khẩu" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            @* Xác nhận mật khẩu *@
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-input", placeholder = "Xác nhận mật khẩu" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+
+            @* Họ tên khách hàng *@
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-input", placeholder = "Họ tên" } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+
+            @* SĐT khách hàng *@
+            <div class="form-group">
+                <i class="fa-solid fa-phone"></i>
+                @Html.EditorFor(model => model.CustomerPhone, new { htmlAttributes = new { @class = "form-input", placeholder = "SĐT" } })
+                @Html.ValidationMessageFor(model => model.CustomerPhone, "", new { @class = "text-danger" })
+            </div>
+
+            @* Email khách hàng *@
+            <div class="form-group">
+                <i class="fa-solid fa-envelope"></i>
+                @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-input", placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+            </div>
+
+            @* Địa chỉ khách hàng *@
+            <div class="form-group">
+                <i class="fa-solid fa-map-marker-alt"></i>
+                @Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "form-input", placeholder = "Địa chỉ" } })
+                @Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Đăng ký" class="form-submit" />
+            </div>
+
+            <div class="register-link">
+                <p>Đã có tài khoản? <a href="@Url.Action("Login", "Account")">Đăng nhập</a></p>
+            </div>
+        }
+    </div>
+</body>
+</html>

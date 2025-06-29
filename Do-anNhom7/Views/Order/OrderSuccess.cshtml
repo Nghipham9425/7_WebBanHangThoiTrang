@@ -1,0 +1,77 @@
+﻿@model Do_anNhom7.Models.Order
+@{
+    ViewBag.Title = "OrderSuccess";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f8fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .success-container {
+        text-align: center;
+        margin: 50px auto;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .success-icon {
+        font-size: 50px;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .success-message {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .success-details {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    .order-id {
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+
+<div class="success-container">
+    <div class="success-icon">✔</div>
+    <div class="success-message">Đặt hàng thành công!</div>
+    <div class="success-details">
+        Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi. Mã đơn hàng của bạn là
+        <span class="order-id">#ORD - @ViewBag.OrderId</span>. Chúng tôi sẽ liên hệ sớm để xác nhận đơn hàng.
+    </div>
+
+    <a href="@Url.Action("Homepage", "Home")" class="btn">Tiếp tục mua sắm</a>
+</div>
+

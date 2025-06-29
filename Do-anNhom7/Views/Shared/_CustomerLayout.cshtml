@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="~/Content/img/favicon-32x32.png" />
+    <link href="~/Content/Mystyle/layout.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="div-header">
+        <a href="~/Home/Homepage"><img id="logobrand" src="~/Content/img/DREAM.png" /></a>
+        <div class="hamburger-menu"onclick="toggleMenu()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <div id="menu-head">
+            <ul>
+                <li class="menu-item">
+                    <b><a href="~/Product/Sanphammoi">SẢN PHẨM MỚI</a></b>
+                </li>
+                <li class="menu-item">
+                    <b><a href="~/Product/Nu">NỮ</a></b>
+                    <ul class="submenu">
+                        <li><a href="~/Product/aonu">Áo nữ</a></li>
+                        <li><a href="~/Product/quannu">Quần nữ</a></li>
+                        <li><a href="~/Product/vay">Váy</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <b><a href="~/Product/Nam">NAM</a></b>
+                    <ul class="submenu">
+                        <li><a href="~/Product/aonam">Áo nam</a></li>
+                        <li><a href="~/Product/quannam">Quần nam</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <b><a href="~/Product/Phukien">PHỤ KIỆN</a></b>
+                    <ul class="submenu">
+                        <li><a href="~/Product/tuisach">Túi xách</a></li>
+                        <li><a href="~/Product/balo">Balo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        @using (Html.BeginForm("Homepage", "Home", FormMethod.Get, new { @class = "form-inline search-form" }))
+        {
+            @Html.TextBox("searchTerm", null, new { @class = "form-control search-input", placeholder = "Tìm kiếm sản phẩm..." })
+        }
+        <div id="icon-header">
+            <ul>
+                <li><i class="fa-solid fa-store"></i><br /><a href="~/Home/Address">Cửa hàng</a></li>
+
+                @if (Session["Username"] != null)
+                {
+                    <li class="menu-item">
+                        <i class="fa-solid fa-user"></i><br /><a href="#">@Session["Username"]</a>
+                        <ul class="submenu2">
+                            <li><a href="~/Account/Details">Thông tin tài khoản</a></li>
+                            <li><a href="~/Account/OrderHistory">Lịch sử mua hàng</a></li>
+                            <li><a href="~/Account/Logout">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><i class="fa-solid fa-user"></i><br /><a href="~/Account/Login">Tài khoản</a></li>
+                }
+
+                <li><i class="fa-solid fa-cart-shopping"></i><br /><a href="~/Cart/Index">Giỏ hàng</a></li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div id="main-content" class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Homepage", "Home")" style="text-decoration:none">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+            </ul>
+        </nav>
+        <!-- Render Body -->
+        @RenderBody()
+    </div>
+
+    <hr style="width:100%" />
+    <div id="div-footer">
+        <div id="left-footer">
+            <h4 style="text-align:center">CÔNG TY CỔ PHẦN DREAM</h4>
+            <p style="text-align:center">
+                ngày cấp: 23/09/2024, Nơi cấp:Huflit.
+                <br />
+                Địa chỉ liên hệ: Đại học huflit Sư Vạn Hạnh
+                <br />
+                Điện thoại: +8432 - 7323.1222
+                <br />
+                Fax: +8424 - 6777.3219
+                <br />
+                Email: hello@dream.com
+                <div id="divlogo-brand">
+                    <a href="https://www.facebook.com/huflit.edu.vn" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/huflit.official/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/&#64;huflitofficial2711" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </p>
+        </div>
+        <div id="mid-footer">
+            <h4>THƯƠNG HIỆU</h4>
+            <p><a href="~/Home/Gioithieu">Giới thiệu</a></p>
+            <p><a href="~/Home/Chinhsach">Chính sách</a></p>
+            <p><a href="~/Home/Lienhe">Liên hệ</a></p>
+        </div>
+        <div id="right-footer">
+            <h4>TẢI ỨNG DỤNG</h4>
+            <img class="img-footer" width="50" src="~/Content/img/QRCODE.png" alt="QRCODE" />
+            <img class="img-footer" width="100" src="~/Content/img/AppStoreBadge.png" alt="appstore-link" />
+            <img class="img-footer" width="120" src="~/Content/img/CHBadge.png" alt="ChPlay-link" />
+            <br />
+            <h4>PHƯƠNG THỨC THANH TOÁN</h4>
+            <img src="~/Content/img/PAY.png" alt="Các phương thức thanh toán" width="200" />
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('menu-head');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {    
+                menu.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

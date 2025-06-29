@@ -1,0 +1,18 @@
+﻿@model Do_anNhom7.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Mystyle/admin.css" rel="stylesheet" />
+<h2 class="text-center">Chi tiết sản Phẩm</h2>
+
+<div class="text-center">
+    <hr />
+    @Html.Partial("PV_DeleteDetailPro")
+</div>
+
+<p class="text-center">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+</p>

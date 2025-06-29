@@ -1,0 +1,406 @@
+﻿/* CSS hiện tại giữ nguyên */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+#div-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+}
+
+#main-content {
+    padding-top: 80px;
+    position: relative;
+}
+
+#logobrand {
+    width: 70px;
+    margin: 0 20px 0 50px;
+}
+
+/* Thiết lập kiểu cho các liên kết trong menu */
+#menu-head a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #051923;
+}
+
+#menu-head ul {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+#menu-head li {
+    display: inline;
+    margin-right: 10px;
+    position: relative;
+}
+
+    /* Hiệu ứng đường gạch chân dưới các mục menu khi hover */
+    #menu-head li::after {
+        content: '';
+        width: 0px;
+        height: 2px;
+        background-color: burlywood;
+        transition: width 1s;
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        transform: translateX(-50%);
+    }
+
+    #menu-head li:hover::after {
+        width: 100%;
+    }
+
+/* Thiết lập menu con (submenu) */
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    left: 0;
+    opacity: 0.7;
+}
+
+    .submenu.active {
+        display: block;
+    }
+
+#menu-head li:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    white-space: nowrap;
+    padding: 10px;
+}
+
+#menu-head li:hover .submenu li::after {
+    content: none; /* Bỏ hiệu ứng gạch chân cho các mục con */
+}
+
+/* Tìm kiếm */
+#search-container {
+    margin-left: 100px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.search-form {
+    margin-left: 100px;
+}
+
+.search-input {
+    width: 300px;
+    border-radius: 10px;
+}
+
+/* Menu với biểu tượng */
+#icon-header {
+    display: flex;
+    cursor: pointer;
+    margin-left: auto;
+    position: relative;
+}
+
+    #icon-header ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    #icon-header li {
+        margin-right: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    #icon-header a {
+        text-decoration: none;
+        color: black;
+        position: relative;
+    }
+
+/* Đặt submenu2 dưới mục cha (li) */
+.submenu2 {
+    display: none !important; /* Đảm bảo không bị ghi đè */
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* Đảm bảo submenu nằm trên các phần tử khác */
+    opacity: 0.9;
+    left: 50%; /* Căn giữa theo chiều ngang */
+    top: 100%; /* Đảm bảo submenu xuất hiện ngay dưới mục cha */
+    transform: translateX(-50%); /* Dịch chuyển qua trái một nửa chiều rộng của phần tử để căn giữa */
+    min-width: 150px;
+    padding: 10px 0;
+}
+
+/* Khi hover vào phần tử cha, submenu2 sẽ hiển thị */
+#icon-header li:hover .submenu2 {
+    display: block !important; /* Hiển thị submenu */
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    opacity: 0.9;
+    left: 50%; /* Căn giữa theo chiều ngang */
+    top: 100%; /* Đảm bảo submenu xuất hiện ngay dưới mục cha */
+    transform: translateX(-50%); /* Dịch chuyển qua trái một nửa chiều rộng của phần tử để căn giữa */
+    min-width: 150px;
+    padding: 10px 0;
+}
+
+/* Đảm bảo các mục trong submenu2 hiển thị dọc */
+.submenu2 li {
+    display: block;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+/* Footer */
+#div-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0;
+    flex-wrap: wrap; /* Thêm flex-wrap để các phần tử không bị tràn */
+}
+
+#left-footer, #mid-footer, #right-footer {
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 20px; /* Thêm khoảng cách giữa các phần tử */
+}
+
+@media (min-width: 768px) {
+    #left-footer, #mid-footer, #right-footer {
+        width: 33%;
+        margin-bottom: 0; /* Xóa khoảng cách giữa các phần tử trên màn hình lớn */
+    }
+}
+
+.img-footer {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá kích thước của phần tử chứa */
+    height: auto; /* Giữ tỷ lệ khung hình của hình ảnh */
+}
+
+h4 {
+    font-weight: bold;
+}
+
+#divlogo-brand {
+    display: flex;
+    justify-content: center;
+}
+
+    #divlogo-brand i {
+        font-size: 30px;
+        margin-right: 15px;
+        color: black;
+    }
+
+#mid-footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.cate-heading {
+    padding-top: 30px;
+}
+
+/* Thêm nút hamburger menu */
+.hamburger-menu {
+    display: none; /* Ẩn biểu tượng hamburger theo mặc định (có thể sẽ hiển thị khi màn hình nhỏ) */
+    flex-direction: column; /* Xếp các đường ngang theo chiều dọc */
+    cursor: pointer; /* Hiển thị con trỏ chuột dạng "pointer" khi di chuột vào */
+    padding: 10px; /* Thêm khoảng cách xung quanh biểu tượng hamburger */
+}
+.hamburger-line {
+    width: 25px; /* Chiều rộng của mỗi đường ngang */
+    height: 3px; /* Chiều cao của mỗi đường ngang */
+    background-color: black; /* Màu nền của đường ngang (màu xám đậm) */
+    margin: 3px 0; /* Khoảng cách giữa các đường ngang */
+    transition: 0.3s; /* Thêm hiệu ứng chuyển động khi có thay đổi */
+}
+
+/* Màn hình tablet (768px và nhỏ hơn) */
+@media screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+
+    #menu-head {
+        width: 100%;
+        background-color: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        #menu-head.active {
+            display: block;
+        }
+
+        #menu-head ul {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+
+        #menu-head li {
+            display: block;
+            margin: 0;
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+            #menu-head li:last-child {
+                border-bottom: none;
+            }
+
+    /* Điều chỉnh submenu */
+    .submenu {
+        display: none !important; /* Ẩn submenu trên thiết bị nhỏ */
+    }
+
+    /* Điều chỉnh header */
+    #div-header {
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    #search-container {
+
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    #icon-header {
+
+    }
+
+    /* Đảm bảo main content không bị che */
+    #main-content {
+        padding-top: 70px;
+    }
+
+    /* Điều chỉnh banner */
+    .banner {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    /* Ẩn breadcrumb */
+    .breadcrumb {
+        display: none;
+    }
+}
+
+/* Màn hình mobile (576px và nhỏ hơn) */
+@media screen and (max-width: 576px) {
+    #search-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+        #search-container.active {
+            display: block;
+        }
+
+    .search-form {
+        margin: 0;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    /* Icon header adjustment */
+    #icon-header li .submenu2 {
+        right: 0;
+        left: auto;
+        transform: none;
+    }
+
+    #main-content {
+        padding-top: 60px;
+    }
+
+    /* Điều chỉnh banner */
+    .banner {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    /* Ẩn menu con */
+    .submenu {
+        display: none !important;
+    }
+
+    /* Ẩn breadcrumb */
+    .breadcrumb {
+        display: none;
+    }
+}
+
+/* Màn hình rất nhỏ (400px và nhỏ hơn) */
+@media screen and (max-width: 400px) {
+    #icon-header li {
+        margin-right: 8px;
+    }
+
+    .hamburger-menu {
+        padding: 8px;
+    }
+
+    #main-content {
+        padding-top: 55px;
+    }
+
+    /* Điều chỉnh banner */
+    .banner {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    /* Ẩn menu con */
+    .submenu {
+        display: none !important;
+    }
+
+    /* Ẩn breadcrumb */
+    .breadcrumb {
+        display: none;
+    }
+}

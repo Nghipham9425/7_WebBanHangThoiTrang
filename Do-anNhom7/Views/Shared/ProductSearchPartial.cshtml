@@ -1,0 +1,9 @@
+﻿@model Do_anNhom7.Models.ViewModel.ProductSearchVM
+
+<div id="search-container" class="input-group">
+    <form method="get" action="@Url.Action("Search", "Product")">
+        <input type="text" name="SearchTerm" class="form-control" placeholder="Tìm kiếm..." maxlength="50" />
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+</div>
+

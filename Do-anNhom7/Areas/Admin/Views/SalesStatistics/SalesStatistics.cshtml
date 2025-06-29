@@ -1,0 +1,79 @@
+﻿@model Do_anNhom7.Models.ViewModel.SalesStatisticsVM
+
+@{
+    ViewBag.Title = "Thống kê doanh số";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .statistics-container {
+        margin-top: 20px;
+    }
+
+    .statistics-section {
+        margin-bottom: 30px;
+    }
+
+        .statistics-section h3 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .statistics-section p {
+            font-size: 18px;
+            color: #555;
+        }
+
+    .chart-container {
+        width: 100%;
+        height: 400px;
+    }
+</style>
+
+<div class="container statistics-container">
+    <h2 class="text-center">Thống kê doanh số</h2>
+
+    <div class="statistics-section">
+        <h3>Tổng quan</h3>
+        <p>Tổng doanh số: <strong>@Model.TotalSales.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</strong></p>
+        <p>Tổng số đơn hàng: <strong>@Model.TotalOrders</strong></p>
+        <p>Tổng số sản phẩm đã bán: <strong>@Model.TotalProductsSold</strong></p>
+        <p>Giá trung bình sản phẩm: @Model.AVGPrice.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</p>
+    </div>
+
+    <div class="statistics-section">
+        <h3>Doanh số theo danh mục</h3>
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    var ctx = document.getElementById('salesChart').getContext('2d');
+    var salesChart = new Chart(ctx, {
+        type: 'bar',  // Biểu đồ cột
+        data: {
+            labels: @Html.Raw(Json.Encode(Model.SalesByCategories.Select(c => c.CategoryName))), // Danh mục
+            datasets: [{
+                label: 'Tổng doanh số (VND)',
+                data: @Html.Raw(Json.Encode(Model.SalesByCategories.Select(c => c.TotalSales))), // Dữ liệu doanh số
+                backgroundColor: '#c8e7ff', // Màu cột
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true, // Đảm bảo trục y bắt đầu từ 0
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); // Hiển thị số dưới dạng tiền tệ
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
